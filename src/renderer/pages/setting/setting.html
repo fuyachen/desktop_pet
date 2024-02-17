@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置</title>
+  <link rel="stylesheet" href="./setting.css">
+  <link rel="stylesheet" href="../../style/popup.css">
+  <link rel="stylesheet" href="../../style/message.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="selection">
+      <div class="highlight" id="highlight"></div>
+      <div class="selection_bar" id="versionInfoTab">版本信息</div>
+      <div class="selection_bar" id="domainSettingTab">功能设置</div>
+      <div class="selection_bar" id="modelSettingTab">模型设置</div>
+    </div>
+
+    <div class="setting_page" id="versionInfo">
+      <div class="setting_box">
+        <div class="setting_header">
+          <h3>版本信息</h3>
+        </div>
+        <div class="container_box">
+          <span>当前版本</span>
+          <span id="app_version"></span>
+        </div>
+
+        <div class="container_box">
+          <span>作者</span>
+          <span>小埋iwn、dullwolf蠢狼</span>
+        </div>
+
+        <div class="container_box">
+          <span>live2d画师</span>
+          <span>Candya</span>
+        </div>
+
+        <div class="setting_bottom">
+          <h3>留言反馈</h3>
+          <textarea class="feedback" id="feedback_content" cols="30" rows="10" placeholder="在这里提出可以提出您的建议哦"></textarea>
+          <div class="word_count">已输入<span id="wordCount">0</span>个字</div>
+          <div class="clear_text" id="clear_text">清空内容</div>
+          <div class="feedback_commit" id="feedback_button">匿名提交</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="setting_page" id="domainSetting">
+      <div class="setting_box">
+        <div class="setting_header">
+          <h3>功能设置</h3>
+        </div>
+        <div class="container_box">
+          <span>开机自启动</span>
+          <label class="switch">
+            <input type="checkbox" id="toggle_power">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="container_box">
+          <span>秋蒂直播通知</span>
+          <label class="switch">
+            <input type="checkbox" id="liveNotification">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="volume_box">
+          <span class="tag">音量控制</span>
+          <input type="range" min="0" max="1" step="0.01" class="volume_control" id="volumeControl">
+          <span class="param"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="setting_page" id="modelSetting">
+      <div class="setting_box">
+        <div class="setting_header">
+          <h3>模型设置</h3>
+        </div>
+
+        <div class="container_box">
+          <span style="position: absolute; top: 15px;">选择本地模型文件 </span>
+          <div style="position: absolute; bottom: 10px; color: crimson; font-size: 12px;">注意：请选择模型文件后缀为model/model3.json</div>
+          <div class="model-box" id="uploadFile">选择文件</div>
+          <input id="localModelSelect" type="file" class="inputFile">
+        </div>
+
+        <div class="container_box">
+          <span>X轴方向平移</span>
+          <input id="xAxis" type="text" class="inputText" value="0">
+        </div>
+
+        <div class="container_box">
+          <span>Y轴方向平移</span>
+          <input id="yAxis" type="text" class="inputText" value="60">
+        </div>
+        
+        <div class="container_box">
+          <span>缩放比例</span>
+          <input id="scaling" type="text" class="inputText" value="0.15">
+        </div>
+
+        <div class="setting_bottom">
+          <div class="update-model" id="updateModelBtn">更新</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 消息提示框 -->
+    <div class="message-container" id="message-container"></div>
+  </div>
+
+</body>
+
+</html>
+
+<script src="../../utils/message.js"></script>
+<script src="../../utils/popup.js"></script>
+<script src="./setting.js"></script>

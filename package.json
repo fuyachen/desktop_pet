@@ -1,0 +1,76 @@
+{
+  "name": "chatgpt-desktoppet",
+  "version": "1.3.0",
+  "description": "DesktopPet Electron",
+  "main": "./src/main/background.js",
+  "scripts": {
+    "start": "chcp 65001 && cross-env NODE_ENV=development electron .",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "electron-builder",
+    "dist-win": "electron-builder --win --ia32",
+    "dist-win64": "cross-env NODE_ENV=production electron-builder --win --x64",
+    "dist-mac": "electron-builder build --mac",
+    "dist-linux": "electron-builder build --linux"
+  },
+  "keywords": [
+    "electron",
+    "chatgpt",
+    "live2d"
+  ],
+  "author": "kirbystudy, dullwolf",
+  "license": "BSD 2-Clause",
+  "devDependencies": {
+    "@electron/remote": "^2.0.9",
+    "cross-env": "^7.0.3",
+    "electron": "^21.4.4",
+    "electron-builder": "23.6.0",
+    "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.9",
+    "electron-as-wallpaper": "^1.0.3",
+    "electron-store": "^8.1.0",
+    "node-notifier": "^10.0.1",
+    "wallpaper": "^5.0.1"
+  },
+  "build": {
+    "productName": "秋蒂桌宠",
+    "appId": "com.disktoppet",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "./src",
+      "model",
+      "node_modules",
+      "package.json",
+      "assets",
+      "config"
+    ],
+    "win": {
+      "icon": "./assets/app_256.ico",
+      "target": {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    },
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "perMachine": true,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./assets/app_256.ico",
+      "uninstallerIcon": "./assets/app_256.ico",
+      "installerHeaderIcon": "./assets/app_256.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "秋蒂桌宠"
+    },
+    "extends": null
+  }
+}

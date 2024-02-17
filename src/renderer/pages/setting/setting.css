@@ -1,0 +1,412 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  color: aliceblue;
+  background-color: #f4f5f7;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 50;
+  box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+  -webkit-box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+  -moz-box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+}
+
+.selection {
+  position: absolute;
+  background-color: #f4f5f7;
+  left: 16px;
+  right: 16px;
+  z-index: 0;
+  user-select: none;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.highlight {
+  position: absolute;
+  width: 70px;
+  height: 5%;
+  top: 85%;
+  left: 15px;
+  background-color: #4299b1;
+  box-shadow: 0 0 1px 1px #4299b1;
+  border-radius: 7px;
+  transition: all 0.5s ease;
+}
+
+.selection_bar {
+  width: 80px;
+  font-size: 15px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #202020;
+}
+
+.selection_bar:hover {
+  background-color: rgba(170, 170, 170, 0.3) !important;
+}
+
+.selection_bar {
+  font-weight: bold;
+}
+
+.setting_page {
+  display: none;
+  position: absolute;
+  background-color: #f4f5f7;
+  border-radius: 3px;
+  top: 40px;
+  left: 16px;
+  right: 16px;
+  bottom: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.setting_page.active {
+  display: block;
+}
+
+.setting_box {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 0;
+}
+
+.setting_box::-webkit-scrollbar {
+  /* 滚动条宽度 */
+  width: 3px;
+  /* 滚动条高度 */
+  height: 3px;
+  /* 默认设置滚动条不可见 */
+  opacity: 0;
+}
+
+.setting_box::-webkit-scrollbar-thumb {
+  /* 滚动条滑块颜色 */
+  background-color: #BCBCD2;
+  /* 滚动条滑块四个圆角半径 */
+  border-radius: 4px;
+}
+
+.setting_box::-webkit-scrollbar-track {
+  /* 滚动条轨道背景色 */
+  background-color: #f5f5f5;
+}
+
+.setting_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.setting_header h3 {
+  color: #000;
+}
+
+.setting {
+  width: auto;
+  border-radius: 7px;
+  user-select: none;
+}
+
+.setting .form_selection {
+  padding: 0 15px 0 15px;
+  margin: 15px 0 10px;
+}
+
+.form_selection .title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.select {
+  width: 100%;
+  height: 40px;
+  background-color: #a3b5bb;
+  outline: none;
+  border: 1px solid #d9dce3;
+  border-radius: 4px;
+  color: #606266;
+  padding: 0 30px 0 15px;
+  font-size: 14px;
+}
+
+.container_box {
+  width: auto;
+  height: 45px;
+  padding: 10px;
+  box-shadow: 0 0 0 1px #202020;
+  margin: 8px 13px 8px 13px;
+  background-color: #f4f5f7;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  position: relative;
+}
+
+.container_box span {
+  color: #313131;
+  font-weight: bold;
+}
+
+/* 设置开关标签容器的通用样式 */
+.switch {
+  position: absolute;
+  display: inline-block;
+  right: 20px;
+  width: 45px;
+  height: 20px;
+}
+
+/* 隐藏复选框 */
+.switch input {
+  display: none;
+}
+
+/* 设置滑块的基本样式 */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d9dce3;
+  box-shadow: 0 0 0 1px #ccc;
+  /* 添加动画过渡效果 */
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* 设置滑块的圆形按钮 */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  /* 添加动画过渡效果 */
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* 当复选框处于选中状态时，滑块为蓝色 */
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+/* 当滑块处于焦点状态时，添加阴影效果 */
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+/* 当复选框处于选中状态时，将滑块设置为右侧状态 */
+input:checked+.slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+/* 将滑块样式设置为圆形 */
+.slider.round {
+  border-radius: 34px;
+}
+
+/* 将圆形按钮样式设置为圆形 */
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.setting_bottom {
+  width: auto;
+  height: 120px;
+  padding: 10px;
+  position: relative;
+}
+
+.setting_bottom h3 {
+  color: #000;
+}
+
+.feedback {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 8px;
+  margin-left: 3px;
+  box-sizing: border-box;
+  outline: none;
+  border-width: 0;
+  resize: none;
+  border-radius: 7px;
+  border: 1px solid #202020;
+  background-color: #f4f5f7;
+}
+
+.feedback::placeholder {
+  font-size: 14px;
+}
+
+.word_count {
+  position: absolute;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-left: 5px;
+  color: #202020;
+}
+
+.clear_text {
+  width: 100px;
+  height: 50px;
+  color: white;
+  background-color: #4F7cff;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+  right: 130px;
+}
+
+.clear_text:active {
+  transform: scale(0.98);
+}
+
+.feedback_commit {
+  width: 100px;
+  height: 50px;
+  background-color: #4F7cff;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+.feedback_commit:active {
+  transform: scale(0.98);
+}
+
+.volume_box {
+  width: auto;
+  height: 45px;
+  padding: 10px;
+  box-shadow: 0 0 0 1px #202020;
+  margin: 8px 13px 8px 13px;
+  background-color: #f4f5f7;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  position: relative;
+}
+
+.volume_box .tag {
+  width: 12%;
+  color: #313131;
+  font-weight: bold;
+}
+
+
+.volume_control {
+  width: 80%;
+}
+
+.param {
+  display: flex;
+  justify-content: center;
+  width: 8%;
+  padding: 8px;
+  background-color: #d9dce3;
+  color: #313131;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 16px;
+}
+
+.param::after {
+  content: '%';
+}
+
+.model-box {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  right: 20px;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #4F7cff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.model-box:active {
+  transform: scale(0.98);
+}
+
+.inputFile {
+  display: none;
+}
+
+.inputText {
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  right: 20px;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid #464646;
+  border-bottom: 2px solid #464646;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.inputText:focus {
+  border-bottom: 2px solid #4299b1;
+}
+
+.update-model {
+  width: 80px;
+  height: 40px;
+  background-color: #4F7cff;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: absolute;
+  font-size: 14px;
+  right: 0;
+}
+
+.update-model:active {
+  transform: scale(0.98);
+}
